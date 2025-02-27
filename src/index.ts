@@ -1,11 +1,12 @@
 import { Carro } from "./interface/Carro";
 import { Moto } from "./interface/Moto";
 import { GerenciadorVeiculos } from "./classes/GerenciadorVeiculos";
+import { EstoqueVeiculos } from "./classes/EstoqueVeiculos";
 
 const gerenciadorCarros = new GerenciadorVeiculos<Carro>();
 const gerenciadorMotos = new GerenciadorVeiculos<Moto>();
+const estoque = new EstoqueVeiculos<string>();
 
-// Criando veículos
 const carro1: Carro = {
     marca: "Toyota",
     modelo: "Corolla",
@@ -34,9 +35,13 @@ gerenciadorCarros.adicionar(carro1);
 gerenciadorCarros.adicionar(carro2);
 gerenciadorMotos.adicionar(moto1);
 
-gerenciadorCarros.listarVeiculos();
-gerenciadorMotos.listarVeiculos();
+estoque.adicionarEstoque("Corolla", 5);
+estoque.adicionarEstoque("Focus", 3);
+estoque.adicionarEstoque("CB 500", 7);
 
-gerenciadorCarros.remover(carro1);
+estoque.listarEstoque();
 
-gerenciadorCarros.listarVeiculos();
+estoque.removerEstoque("Corolla");
+
+estoque.consultarEstoque("Corolla");
+estoque.listarEstoque();
