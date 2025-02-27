@@ -1,8 +1,9 @@
-import { Carro } from "./interface/Carro";
+import { Carro } from "./interface/Carro"; 
 import { Moto } from "./interface/Moto";
 import { GerenciadorVeiculos } from "./classes/GerenciadorVeiculos";
 import { EstoqueVeiculos } from "./classes/EstoqueVeiculos";
 import { FiltroVeiculos } from "./utils/FiltroVeiculos";
+import { RelatorioVeiculos } from "./utils/RelatorVeiculos";
 
 const gerenciadorCarros = new GerenciadorVeiculos<Carro>();
 const gerenciadorMotos = new GerenciadorVeiculos<Moto>();
@@ -40,10 +41,12 @@ estoque.adicionarEstoque("Corolla", 5);
 estoque.adicionarEstoque("Focus", 3);
 estoque.adicionarEstoque("CB 500", 7);
 
+console.log("📦 Estoque inicial:");
 estoque.listarEstoque();
 
 estoque.removerEstoque("Corolla");
 
+console.log("📦 Estoque após remoção:");
 estoque.consultarEstoque("Corolla");
 estoque.listarEstoque();
 
@@ -55,6 +58,8 @@ const veiculos = [
     { marca: "Yamaha", modelo: "MT-07", ano: 2022, cilindradas: 700, acelerar: () => "Moto acelerando forte!" } as Moto,
 ];
 
-console.log("Veículos do ano 2022:", FiltroVeiculos.filtrarPorAno(veiculos, 2022));
-console.log("Veículos da marca Honda:", FiltroVeiculos.filtrarPorMarca(veiculos, "Honda"));
-console.log("Veículos do modelo Corolla:", FiltroVeiculos.filtrarPorModelo(veiculos, "Corolla"));
+console.log("🔍 Veículos do ano 2022:", FiltroVeiculos.filtrarPorAno(veiculos, 2022));
+console.log("🔍 Veículos da marca Honda:", FiltroVeiculos.filtrarPorMarca(veiculos, "Honda"));
+console.log("🔍 Veículos do modelo Corolla:", FiltroVeiculos.filtrarPorModelo(veiculos, "Corolla"));
+
+console.log(RelatorioVeiculos.gerarRelatorio(veiculos));
