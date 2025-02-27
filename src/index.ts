@@ -1,7 +1,12 @@
 import { Carro } from "./interface/Carro";
 import { Moto } from "./interface/Moto";
+import { GerenciadorVeiculos } from "./classes/GerenciadorVeiculos";
 
-const meuCarro: Carro = {
+const gerenciadorCarros = new GerenciadorVeiculos<Carro>();
+const gerenciadorMotos = new GerenciadorVeiculos<Moto>();
+
+// Criando veículos
+const carro1: Carro = {
     marca: "Toyota",
     modelo: "Corolla",
     ano: 2022,
@@ -9,7 +14,15 @@ const meuCarro: Carro = {
     acelerar: () => "O carro está acelerando!"
 };
 
-const minhaMoto: Moto = {
+const carro2: Carro = {
+    marca: "Ford",
+    modelo: "Focus",
+    ano: 2020,
+    portas: 4,
+    acelerar: () => "O carro está acelerando rapidamente!"
+};
+
+const moto1: Moto = {
     marca: "Honda",
     modelo: "CB 500",
     ano: 2021,
@@ -17,21 +30,13 @@ const minhaMoto: Moto = {
     acelerar: () => "A moto está acelerando!"
 };
 
-function exibirDetalhesVeiculo(veiculo: Carro | Moto) {
-    console.log("=== Detalhes do Veículo ===");
-    console.log(`Marca: ${veiculo.marca}`);
-    console.log(`Modelo: ${veiculo.modelo}`);
-    console.log(`Ano: ${veiculo.ano}`);
+gerenciadorCarros.adicionar(carro1);
+gerenciadorCarros.adicionar(carro2);
+gerenciadorMotos.adicionar(moto1);
 
-    if ("portas" in veiculo) {
-        console.log(`Portas: ${veiculo.portas}`);
-    } else if ("cilindradas" in veiculo) {
-        console.log(`Cilindradas: ${veiculo.cilindradas} cc`);
-    }
+gerenciadorCarros.listarVeiculos();
+gerenciadorMotos.listarVeiculos();
 
-    console.log(veiculo.acelerar());
-    console.log("-------------------------");
-}
+gerenciadorCarros.remover(carro1);
 
-exibirDetalhesVeiculo(meuCarro);
-exibirDetalhesVeiculo(minhaMoto);
+gerenciadorCarros.listarVeiculos();
